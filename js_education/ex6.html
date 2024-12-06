@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Title</title>
+  </head>
+  <body>
+    <button id="btn">click me</button>
+    <script>
+      let btn = document.getElementById('btn');
+      let i = 0;
+      let j = 0
+      function clickHandler(){
+        i++;
+        console.log(i, "click");
+      }
+      function clickHandler2(){
+        j++;
+        console.log(j, "click_2");
+      }
+      /*btn.onclick = clickHandler;
+      btn.onclick = clickHandler2;*/
+      btn.addEventListener('click', clickHandler);
+      btn.addEventListener('click', clickHandler2);
+    </script>
+  </body>
+</html>

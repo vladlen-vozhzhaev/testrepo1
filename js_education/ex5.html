@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Title</title>
+  </head>
+  <body>
+    <script>
+      class Person{
+        static PI = 3.14;
+        constructor(name, lastname, age) {
+          this.name = name; // Свойство
+          this.lastname = lastname; // Свойство
+          this.age = age; // Свойство
+        }
+        sayHi(){ // Метод
+          console.log('Hello, my name is '+this.name);
+        }
+        static f(){
+          console.log('call f()');
+        }
+      }
+
+      let person1 = new Person("Ivan", "Ivanov", 49);
+      let person2 = new Person();
+      let person3 = new Person();
+      console.log(person1.name); // Ivan
+      person1.sayHi()
+    </script>
+  </body>
+</html>

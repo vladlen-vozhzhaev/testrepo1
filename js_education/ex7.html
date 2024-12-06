@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Title</title>
+      <style>
+          #redBox, #blueBox, #limeBox, #yellowBox{
+              width: 200px;
+              height: 200px;
+              position: absolute;
+          }
+          #redBox{background: red; top: 0; left: 0;}
+          #yellowBox{background: yellow; bottom: 0; left: 0;}
+          #limeBox{background: lime; top:0; right: 0;}
+          #blueBox{background: blue; bottom: 0; right: 0;}
+          .circle{
+              height: 100px;
+              width: 100px;
+              border: 1px solid black;
+              border-radius: 50%;
+              position: absolute;
+          }
+      </style>
+  </head>
+  <body>
+    <div id="redBox" data-color="red"></div>
+    <div id="limeBox" data-color="lime"></div>
+    <div id="yellowBox" data-color="yellow"></div>
+    <div id="blueBox" data-color="blue"></div>
+    <script>
+        let redBox = document.getElementById('redBox');
+        let limeBox = document.getElementById('limeBox');
+        let yellowBox = document.getElementById('yellowBox');
+        let blueBox = document.getElementById('blueBox');
+        let colors = ['red', 'lime', 'yellow', 'blue'];
+        let blocks = [redBox, yellowBox, limeBox, blueBox];
+        for (let i = 0; i < 7; i++) {
+            let color = colors[getIntRandom(0, colors.length)];
+            let circle = document.createElement('div');
+            circle.style.top = getIntRandom(200, window.innerHeight-200-100) + 'px';
+            circle.style.left = getIntRandom(200, window.innerWidth-200-100) + 'px';
+            circle.classList.add('circle');
+            circle.style.background = color;
+            circle.onmousedown = (event)=>{
+                console.log(event.clientX, event.clientY);
+                circle.style.top = event.clientY-50+'px';
+                circle.style.left = event.clientX-50+'px';
+                window.onmousemove = (e)=>{
+                    circle.style.top = e.clientY-50+'px';
+                    circle.style.left = e.clientX-50+'px';
+                }
+                window.onmouseup = (evt)=>{
+                    window.onmousemove = ()=>false;
+                    for (let j = 0; j < blocks.length; j++) {
+                        let block = blocks[j];
+                        let blockTop = block.getBoundingClientRect().top;
+                        let blockLeft = block.getBoundingClientRect().left;
+                        let blockRight = block.getBoundingClientRect().right;
+                        let blockBottom = block.getBoundingClientRect().bottom;
+                        if (
+                            evt.clientX < blockRight &&
+                            evt.clientX > blockLeft &&
+                            evt.clientY > blockTop &&
+                            evt.clientY < blockBottom &&
+                            color == block.dataset.color
+                        ){
+                            circle.remove();
+                        }
+                    }
+                }
+            };
+            document.body.append(circle)
+        }
+        function getIntRandom(min, max){
+            return Math.floor(Math.random() * (max-min) + min)
+        }
+    </script>
+  </body>
+</html>
