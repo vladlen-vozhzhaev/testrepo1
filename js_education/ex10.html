@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ex10</title>
+
+</head>
+<body>
+  <script>
+    // Узнать, сколько раз в массиве встречается число 5
+    // Создать новый массив на основе nums в который попадут только нечётные числа
+    let nums = [34,5,23,12,5,32,5,32,12,46];
+    let nums3 = nums.filter(item=>item%2!==0);
+    console.log(nums3);
+
+    /*let nums2 = [];
+    function findNum(item){
+      if(item % 2  !== 0){
+        return true;
+      }else return false;
+    }
+    nums3 = nums.filter(findNum)
+    console.log(nums3);*/
+    /*nums3 = nums.map(function (item){
+      if(item % 2  !== 0){
+        return item;
+      }
+    })
+    console.log(nums)
+    console.log(nums3);*/
+    /*nums.forEach(function (item){
+      if(item % 2  !== 0){
+        nums2.push(item)
+      }
+    })
+    console.log(nums2);*/
+
+
+    /*for (let i = 0; i < nums.length; i++) {
+      if(nums[i] % 2  !== 0){
+        nums2.push(nums[i])
+      }
+    }
+    console.log(nums2);*/
+
+    /*let count = 0;
+
+    nums.forEach((element)=>{
+      if(element === 5) count++;
+
+    })
+    console.log(count);*/
+    /*
+    function findFive(element, index, arr){
+
+    }
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] === 5){
+        count++;
+      }
+    }
+    console.log(count);*/
+
+  </script>
+</body>
+</html>

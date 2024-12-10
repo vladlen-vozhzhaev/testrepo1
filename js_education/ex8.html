@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Title</title>
+      <style>
+        img{
+          position: absolute;
+        }
+      </style>
+  </head>
+  <body>
+    <img id="logo" src="../img/logo.svg" alt="">
+    <script>
+      let logo = document.getElementById('logo');
+      logo.onmousedown = (event)=>{
+        event.preventDefault()
+        logo.style.top = event.clientY-logo.getBoundingClientRect().height/2+'px';
+        logo.style.left = event.clientX-logo.getBoundingClientRect().width/2+'px';
+        window.onmousemove = (e)=>{
+          e.preventDefault()
+          logo.style.top = e.clientY-logo.getBoundingClientRect().height/2+'px';
+          logo.style.left = e.clientX-logo.getBoundingClientRect().width/2+'px';
+        }
+        window.onmouseup = ()=>{
+          window.onmousemove = ()=>null;
+        }
+      }
+    </script>
+  </body>
+</html>
