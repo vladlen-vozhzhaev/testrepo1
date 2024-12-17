@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+      let nums = [3,34,2,54,32,51,5];
+      let person = [
+          {"lastname":"Федорова","name":"Камилла","patronymic":"Николаевна","age":18},
+          {"lastname":"Гришин","name":"Артем","patronymic":"Юлианович","age":8},
+          {"lastname":"Захарова","name":"Людмила","patronymic":"Несторовна","age":91},
+          {"lastname":"Никитин","name":"Виталий","patronymic":"Федосьевич","age":89},
+          {"lastname":"Тарасов","name":"Валентин","patronymic":"Константинович","age":69},
+          {"lastname":"Александров","name":"Марк","patronymic":"Богуславович","age":25},
+          {"lastname":"Исаев","name":"Владислав","patronymic":"Демидович","age":58},
+          {"lastname":"Дмитриев","name":"Игорь","patronymic":"Григорьевич","age":42},
+          {"lastname":"Медведев","name":"Антон","patronymic":"Павлович","age":13},
+          {"lastname":"Беляев","name":"Валерий","patronymic":"Яковлевич","age":72}
+      ];
+      /*console.log('Исходный массив: ',nums)
+      for (let i = 0; i < nums.length; i++) {
+          for (let j = 0; j < nums.length; j++) {
+              if(nums[j] > nums[j+1]){
+                  let num_j = nums[j]
+                  nums[j] = nums[j+1];
+                  nums[j+1] = num_j;
+              }
+          }
+          console.log(nums);
+      }
+      console.log('Готово: ', nums);*/
+
+
+    /*fetch('https://vozhzhaev.ru/api/getPerson?count=10')
+            .then((response)=>{return response.json()})
+            .then((result)=>{
+              console.log(result);
+              let users = result;
+              for (let i = 0; i < users.length; i++) {
+                let user = users[i];
+                let userAge = user.age;
+                if(userAge > 30)
+                  console.log(user.lastname, user.name);
+              }
+            })*/
+
+/*    function sayHi(callback){
+      callback("hello world");
+    }
+    function f(result){
+      console.log(result);
+    }
+
+    sayHi((result)=>{
+      console.log(result);
+    })*/
+
+/*    function f(x,y,z){
+      return x(2)+y+z;
+    }
+
+    function numThree(){
+      return 3;
+    }
+
+    console.log( f(  (n)=>{return 3**n},  2  ,  5  ) ) // 16*/
+  </script>
+</body>
+</html>
