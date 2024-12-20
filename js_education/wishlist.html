@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">Список желаний</h1>
+      <div class="col-sm-5 mx-auto my-5">
+        <form onsubmit="addPresent(); return false;">
+          <div class="mb-3">
+            <input name="name" type="text" class="form-control" placeholder="Название">
+          </div>
+          <div class="mb-3">
+            <textarea name="comment" class="form-control" placeholder="Комментарий"></textarea>
+          </div>
+          <div class="mb-3">
+            <input type="submit" class="form-control btn btn-primary" value="Добавить в список">
+          </div>
+        </form>
+      </div>
+      <div id="presentList" class="col-sm-5 mx-auto">
+
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+      let presentList = document.getElementById('presentList');
+      let presents = [];
+      if(localStorage.getItem('presents') !== null){
+        str = localStorage.getItem('presents');
+        presents = JSON.parse(str);
+        presents.forEach((present, index)=>{
+          renderPresent(present, index);
+        })
+      }
+
+      function addPresent(){
+        let nameInput = document.getElementsByName('name')[0];
+        let name = nameInput.value;
+        let commentInput = document.getElementsByName('comment')[0];
+        let comment = commentInput.value;
+        let present = {
+          'name': name,
+          'comment': comment
+        }
+        presents.push(present);
+        localStorage.setItem('presents', JSON.stringify(presents));
+        nameInput.value = '';
+        commentInput.value = '';
+        renderPresent(present, presents.length-1);
+      }
+
+      function renderPresent(present, index){
+        let row = document.createElement('div');
+        let col9 = document.createElement('div'); // Тут название
+        let col3 = document.createElement('div'); // Тут кнопки
+        let deleteBtn = document.createElement('button');
+        let updateBtn = document.createElement('button');
+        let p = document.createElement('p');
+        let hr = document.createElement('hr');
+        row.classList.add('row');
+        col9.classList.add('col-9');
+        col3.classList.add('col-3', 'text-end');
+        deleteBtn.classList.add('btn', 'btn-danger');
+        updateBtn.classList.add('btn', 'btn-primary');
+        p.classList.add('text-success');
+        deleteBtn.innerText = "X";
+        updateBtn.innerText = "UPD";
+        p.innerText = present.name+"\n"+present.comment;
+        updateBtn.onclick = ()=>{renderUpdatePresent(p, index, updateBtn)}
+        deleteBtn.onclick = ()=>{deletePresent(row,index);};
+        col9.append(p);
+        col3.append(updateBtn, deleteBtn);
+        row.append(col9, col3, hr);
+        presentList.prepend(row);
+      }
+
+      function deletePresent(row, index){
+        row.remove();
+        presents.splice(index, 1);
+        localStorage.setItem('presents', JSON.stringify(presents));
+      }
+
+      function renderUpdatePresent(p, index, updateBtn){
+        let name = presents[index].name;
+        let comment = presents[index].comment;
+        let inputName = document.createElement('input');
+        let inputComment = document.createElement('input');
+        let br = document.createElement('br');
+        inputName.value = name;
+        inputComment.value = comment;
+        p.innerText = '';
+        p.append(inputName, br, inputComment)
+        updateBtn.onclick = ()=>{
+          let present = {
+            'name': inputName.value,
+            'comment': inputComment.value
+          }
+          p.innerText = present.name+"\n"+present.comment;
+          presents[index] = present;
+          localStorage.setItem('presents', JSON.stringify(presents));
+          updateBtn.onclick = ()=>{renderUpdatePresent(p, index, updateBtn)}
+        }
+      }
+    </script>
+  </body>
+</html>

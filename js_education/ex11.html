@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let cars = ['bmw', 'audi', 'kia'];
+    let user = {
+        "name": "Ivan",
+        "lastname": "Ivanov"
+    }
+    localStorage.setItem('cars', cars);
+    localStorage.setItem('user', JSON.stringify(user));
+
+    let userStr = localStorage.getItem('user');
+    console.log(userStr);
+    user = JSON.parse(userStr);
+    console.log(user);
+    /*localStorage.setItem('name', 'ivan');
+    localStorage.setItem('lastname', 'ivanov');
+    let value = localStorage.getItem('name');
+    console.log(value);
+    localStorage.removeItem('name');
+    console.log(localStorage.getItem('name'));
+    console.log(localStorage.getItem('lastname'));
+    localStorage.clear();
+    console.log(localStorage);*/
+
+
+    /*let str = 'APISID=xPrgUN8U3CZgR_73/AwSYj6-bzTSSLhFs9; SAPISID=CZNf7YD_FfkD-g4m/AIwiF2DEpvk-b4UvW; __Secure-1PAPISID=CZNf7YD_FfkD-g4m/AIwiF2DEpvk-b4UvW; __Secure-3PAPISID=CZNf7YD_FfkD-g4m/AIwiF2DEpvk-b4UvW; SID=g.a000qwgnpioKH5G6rjFf1tb6Yn9ZTDUMMXaqTpGsrdHI_LAqt3hcT8dqrk6ZCw87_z7dwFyd_AACgYKAdcSARISFQHGX2MivjU4HduXhziS_PLlGTmB5RoVAUF8yKqUHG_-djgM7cC-em_MPJWj0076; SEARCH_SAMESITE=CgQI7JwB; name=ivan; SIDCC=AKEyXzViqyLfrO-91Hnd6gSKD3_OBTLFB2iuORr-sx5sogTx4ARmNNohdlpJQmm5CoTF0Yl0BaKF';
+
+    function getCookieValueByName(key){
+        str = str.split('; ');
+        for (let i = 0; i < str.length; i++) {
+            let keyValue = str[i].split('=');
+            if(keyValue[0] === key){
+                console.log(keyValue[1]);
+            }
+        }
+    }
+
+    function getCookie(name) {
+        let matches = str.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }*/
+
+</script>
+</body>
+</html>
